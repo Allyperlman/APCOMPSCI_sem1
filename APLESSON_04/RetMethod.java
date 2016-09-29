@@ -1,14 +1,18 @@
-public class Lab_4.1_EX_03
+public class RetMethod
 {
-	public static void main(String []args)
+	public static void main(String[]args)
 	{
-		Lab_4.1_EX_03 voCube = new Lab_4.1_EX_03();
-		int side1 = 3;
-		System.out.println(volCube.cube(side 1));
+		RetMethod average = new RetMethod();
+		int n1 = 3;
+		int n2 = 8;
+		int n3 = 15;
+		double avg = average.calcAvg(n1, n2, n3);
+		System.out.printf("The volume of your cube is %10.2f\n",avg);
+		
 	}
 	
-	public int cube(int side)
+	public double calcAvg(int one, int two, int three)
 	{
-		return side*side*side;
+		return (one+two+three)/3.0;
 	}
 }
