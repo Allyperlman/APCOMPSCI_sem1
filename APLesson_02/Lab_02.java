@@ -1,4 +1,4 @@
-public class Lesson_02_fixed
+public class Lab_02
 {
 	public static void main(String[]args)
 	{
