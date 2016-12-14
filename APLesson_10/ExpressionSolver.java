@@ -28,7 +28,6 @@ public class ExpressionSolver
 				}
 				equationAL.remove(i-1);
 				equationAL.remove(i);
-				i = 0;
 			}
 			i++;
 		}
