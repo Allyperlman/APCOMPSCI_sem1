@@ -19,12 +19,12 @@ public class ExpressionSolver
 				if(equationAL.get(i).equals("*"))
 				{
 					Integer foo = (Integer.parseInt(equationAL.get(i-1)) * Integer.parseInt(equationAL.get(i+1)));
-					equationAL.set(i, " " + foo);
+					equationAL.set(i, "" + foo);
 				}
 				else 
 				{
 					Integer foo = Integer.parseInt(equationAL.get(i-1)) / Integer.parseInt(equationAL.get(i+1));
-					equationAL.set(i, " " + foo);			
+					equationAL.set(i, "" + foo);			
 				}
 				equationAL.remove(i-1);
 				equationAL.remove(i);
@@ -38,12 +38,12 @@ public class ExpressionSolver
 				if(equationAL.get(i).equals("+"))
 				{
 					Integer foo = Integer.parseInt(equationAL.get(i-1)) + Integer.parseInt(equationAL.get(i+1));
-					equationAL.set(i, " " + foo);
+					equationAL.set(i, "" + foo);
 				}
 				else 
 				{
 					Integer foo = (Integer.parseInt(equationAL.get(i-1)) - Integer.parseInt(equationAL.get(i+1)));
-					equationAL.set(i, " " + foo);
+					equationAL.set(i, "" + foo);
 				}
 				equationAL.remove(i-1);
 				equationAL.remove(i);
