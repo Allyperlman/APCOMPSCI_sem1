@@ -29,21 +29,38 @@ public class Satellite
 
        for (Location l : locate)
        {
-           printout += "\nDistance for " + l.getID() + ": (" + getDistance(l.getLoc(), home)+ ")";
+           printout += "\nDistance for " + l.getID() + ": (" + (Math.round(((getDistance(l.getLoc(), home)*100) + 1) * 100.0)/ 100.0)+ ")";
        }
 
 
-       System.out.println(printout);
+        printout += "\n\n" + "==========================";
+		double x, y;
+        for (Location l : locate)
+       {
+		   x = Math.round(((Math.random()*100) + 1) * 100.0)/ 100.0;
+		   y = Math.round(((Math.random()*100) + 1) * 100.0)/ 100.0;
+           printout += "\nAfter " + l.getID() + " Moved: (" + x + ", " + y + ")";
+		   l.move(x,y);
+		   printout += "\nNew Location: (" + getLocation(l.getLoc()) + ")\n";
+       }
+	   printout += "\n\n" + "==========================" +
+                   "\nDistance from home...";
+
+        for (Location l : locate)
+       {
+           printout += "\nDistance for " + l.getID() + ": (" + (Math.round(((getDistance(l.getLoc(), home)*100) + 1) * 100.0)/ 100.0) + ")";
+       }
+        System.out.println(printout);
    }
+   
+   
 
-
-   public static double getDistance(double[] car, double[] home)
+    public static double getDistance(double[] car, double[] home)
    {
        return Math.sqrt((Math.pow(car[0] - home[0], 2)+ Math.pow(car[1] - home[1], 2)));
    }
 
-
-   public static String getLocation(double[] loc)
+    public static String getLocation(double[] loc)
    {
        return loc[0] + ", " + loc[1];
    }
