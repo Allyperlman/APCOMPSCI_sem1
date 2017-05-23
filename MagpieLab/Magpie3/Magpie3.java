@@ -1,4 +1,4 @@
-public class Magpie2
+public class Magpie3
 {
 	/** Get a default greeting @return a greeting*/
 	public String getGreeting()
@@ -14,7 +14,7 @@ public class Magpie2
 	public String getResponse(String statement)
 	{
 		String response = "";
-
+		int psn = 0;
 		 if (statement.length() == 0)	
 		{
 			response = "Say something, please.";
@@ -55,21 +55,28 @@ public class Magpie2
 			response = transformIYouStatement(statement);
 		}
 		
-		else
+		else if (findKeyword(statement, "I", psn) >= 0)
 		{
-			System.out.println(findKeyword(statement, "I want to", 0) >= 0);
-			// Look for a two word (you <something> me)
-			// pattern
-			int psn = findKeyword(statement, "you", 0);
+			if (psn >= 0
+				&& findKeyword(statement, "you", psn) >= 0)
+			{
+				response = transformIYouStatement(statement);
+			}
+		}
+		
+		else if (findKeyword(statement, "you", psn) >= 0)
+		{
 			if (psn >= 0
 				&& findKeyword(statement, "me", psn) >= 0)
 			{
 				response = transformYouMeStatement(statement);
 			}
-			else
+		}
+		else
+		
 			{
 				response = getRandomResponse();
-			}
+				
 		}
 		return response;
 
@@ -112,19 +119,21 @@ private String transformIYouStatement(String statement)
    * trim the statement**/
    statement = statement.trim();
     /* variable lastChar = last character in statement*/
-   String lastChar = statement.substring(statement.length()-1);
+  
    /* if lastChar is a period...*/
    /* remove the last character from statement*/
-   if(lastChar. equals("."))
-   {
-	  statement = statement.substring(0, statement.length()-1);
-   }
+   
    /* Set new int psn to the result from...*/
    /*        findKeyword() method @param statement, goal is "I want to "*/
-   int psn = findKeyword(statement, "I like you.");
+   
    /* / */
+    int psnOfI = findKeyword(statement, "I");
+   /* Set new int psnOfMe to the result of findKeyword
+   *      @param statement, "me", and psnOfYou + 3*/
+    int psnOfYou = findKeyword(statement, "you", psnOfI + 3);
+     String restOfStatement = statement.substring(psnOfI + 1, psnOfYou - 1);
    /* return "What would it mean to" + restOfStatement; **/
-   return "Why do you like me?";
+   return "What would it mean to" + restOfStatement + " me?";
 }
 
 /**
