@@ -13,8 +13,10 @@ public class DeckTester
 		String[] suit1 = {"Hearts", "Spades", "Diamonds", "Clubs"};
 		int[] value1 = {1,2,3,4,5,6,7,8,9,10,10,10,10};
 	    Deck deck1 = new Deck(rank1, suit1, value1);
-	    System.out.println("Deck1 size should be 3: " + deck1.size());
-        
-        System.out.println(deck1);
+	    System.out.println(deck1);
+		 System.out.println(deck1.deal());
+		  System.out.println(deck1.deal());
+		   System.out.println(deck1.deal());
+		    System.out.println(deck1);
 	}
 }

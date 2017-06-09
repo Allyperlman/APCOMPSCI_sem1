@@ -53,7 +53,6 @@ public class Magpie2
 
 		else
 		{
-			System.out.println(findKeyword(statement, "I want to", 0) >= 0);
 			// Look for a two word (you <something> me)
 			// pattern
 			int psn = findKeyword(statement, "you", 0);
@@ -95,7 +94,7 @@ private String transformIWantToStatement(String statement)
    int psn = findKeyword(statement, "I want to");
    /* Set new String restOfStatement to the rest of statement after the
    /* "I want to ".*/
-   String restOfStatement = statement.substring(psn + 9);
+   String restOfStatement = statement.substring(psn + 8);
    /* / */
    /* return "What would it mean to" + restOfStatement; **/
    return "What would it mean to" + restOfStatement + "?";
@@ -129,7 +128,7 @@ private String transformYouMeStatement(String statement)
     int psnOfMe = findKeyword(statement, "me", psnOfYou + 3);
    /* Set new String restOfStatement to the rest of statement after "You" + 3,
    * and before "me".*/
-    String restOfStatement = statement.substring(psnOfYou +3, psnOfMe);
+    String restOfStatement = statement.substring(psnOfYou + 2, psnOfMe-1);
   /* return "What makes you think that I " + restOfStatement + "you?"
    * */
    return "What makes you think that I" + restOfStatement + "you?";
@@ -144,7 +143,7 @@ private String transformYouMeStatement(String statement)
 		/* New String variable phrase = a more searchable version of statement.
 		 	-Use a combination of trim() and toLowerCase() modify statement.*/
 
-			String phrase = statement.trim().toLowerCase();
+			String phrase = " " + statement.trim().toLowerCase() + " ";
 		  /* New int variable psn = the location of goal in phrase after
 		   startPos*/
 			goal = goal.toLowerCase();
@@ -161,27 +160,15 @@ private String transformYouMeStatement(String statement)
 
 				while(psn >= 0)
 				{
-					String before= "";
-					String after = "";
-					if(psn > 0)
-					{
-						before = phrase.substring(psn -1, psn);
-					}
-					/*check if you can fit goal into the rest of phrase - no need to
-					proceed otherwise
-						set after = the slot in phrase after psn + length of goal */
-
-					if(goal.length() + psn < phrase.length())
-					{
-						after = phrase.substring(psn + goal.length(), psn + goal.length() + 1);
-					}
+					String before = phrase.substring(psn -1, psn);
+					String after = phrase.substring(psn + goal.length(), psn + goal.length() + 1);
 
 					/* if before and after are not letters (compare before to "a"
 					and after to "z")
 						--return psn*/
 						
-					if(before.compareTo("a") < 0 || before.compareTo("z") > 0
-						&& after.compareTo("a") < 0 || after.compareTo("z") > 0)
+					if((before.compareTo("a") < 0 || before.compareTo("z") > 0)
+						&& (after.compareTo("a") < 0 || after.compareTo("z") > 0))
 					{
 						return psn;
 					}						
